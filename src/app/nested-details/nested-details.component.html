@@ -1,0 +1,11 @@
+<div *ngFor="let item of details | keyvalue">
+  <div *ngIf="itemType(item.value) !== 'object'; else elseBlock">
+    {{ item.key }} : {{ item.value }}
+  </div>
+  <ng-template #elseBlock>
+    {{ item.key
+    }}<button (click)="onViewParticularKey(item.key)">
+      view full {{ item.key }}
+    </button>
+  </ng-template>
+</div>

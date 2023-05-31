@@ -1,0 +1,16 @@
+.nav-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+.nav-container>div{
+    margin-right: 1em;
+    padding: 0.5em 1em 0.5em 1em;
+    cursor: pointer;
+  opacity: 0.7;
+
+}
+.nav-container>div:hover{
+    opacity: 1;
+}

@@ -1,0 +1,9 @@
+<nav class="m-r nav-container">
+  <div
+    *ngFor="let navItem of navDetails"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <div [routerLink]="navItem?.to">{{ navItem?.navItemName }}</div>
+  </div>
+</nav>

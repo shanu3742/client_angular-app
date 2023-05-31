@@ -1,0 +1,6 @@
+#cart-heading{
+width: 3000px;
+  background-color: brown;
+  text-align: right;
+  overflow-x: scroll;
+}

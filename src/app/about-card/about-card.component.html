@@ -1,0 +1,14 @@
+<p>{{ comapnName }}</p>
+
+<input
+  placeholder="Enter your name"
+  [(ngModel)]="serachValue"
+  (input)="onInputUpdate()"
+/>
+<h6>{{ serachValue }}</h6>
+
+<h1>observable</h1>
+<div id="cart-heading">
+  by default observable will not emmit the data after getting error
+</div>
+<h6>stream the data :{{ streamValue }}</h6>

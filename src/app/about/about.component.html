@@ -1,0 +1,10 @@
+<h1>@input and @output</h1>
+<h5>output:{{ companyName }}</h5>
+<div>
+  <app-about-card
+    [comapnName]="'StockEdge'"
+    (onUpdateInput)="getOutputData($event)"
+  ></app-about-card>
+
+  <div class="graphContainer" id="app-graph"></div>
+</div>

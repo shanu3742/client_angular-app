@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <script src="https://wzrd.in/bundle/lodash@4.11"></script>
+    <script src="https://wzrd.in/bundle/platform@1.3"></script>
+    <script src="https://wzrd.in/bundle/benchmark@2.1"></script>
+  </head>
+  <body>
+    <script src="JSLitmus.js"></script>
+    <script>
+      JSLitmus.test("new Function ... ", function () {
+        return new Function("for(var i=0; i<100; i++) {}");
+      });
+
+      JSLitmus.test("function() ...", function () {
+        return function () {
+          for (var i = 0; i < 100; i++) {}
+        };
+      });
+    </script>
+  </body>
+</html>

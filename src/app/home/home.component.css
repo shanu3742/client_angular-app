@@ -1,0 +1,32 @@
+
+.card-container{
+    margin-top: 1em;
+    width: 100%;
+    display: grid;
+grid-template-columns: auto auto auto auto;
+grid-gap: 1em;
+}
+
+.card{
+    width: 20rem;
+    height: 10rem;
+    border: 1px solid rgb(71, 71, 71);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    /* background-color: rgb(187, 187, 187); */
+
+}
+.card>div{
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    color:blue;
+    text-decoration: underline;
+
+}
+
+.card>div:hover{
+    color: red;
+    cursor: pointer;
+}

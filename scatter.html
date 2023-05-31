@@ -1,0 +1,147 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        margin: 0%;
+        padding: 0%;
+      }
+    </style>
+    <script src="https://unpkg.com/d3@7.3.0/dist/d3.min.js"></script>
+  </head>
+
+  <body>
+    <script>
+      // 98342737312- 213,73,72,43,89
+      // 212,43,89-
+      //4000-000,4
+      //100-001
+      //100.123-  321.001
+      //4100 - 001,4
+      // 4100.243 -342.001,4
+      // 10900.20109-90102.009,01
+      // 10900.2010912 -2190102.009,01
+      // 109001.2010912-2190102.100,90,1
+
+      //  for loop 3,2,1
+      //after decimal no need of number format just reverse the number
+      //before decimal first reverse it and then format
+
+      546632;
+
+      const indexBasedFormat = (indexPosition, _, indexIncreasedBy) => {
+        indexPosition = indexPosition + indexIncreasedBy;
+        let convertedArrayFromString = _.split("");
+        convertedArrayFromString.splice(indexPosition, 0, ",");
+        let newString = convertedArrayFromString.join("");
+        indexPosition = indexPosition + 1;
+        return { indexPosition: indexPosition, newString: newString };
+      };
+      const updateFormat = (_) => {
+        console.log("actual data", _);
+        let result = "";
+        if (_.length < 4) {
+          return _.split("").reverse().join("");
+        } else {
+          let indexPosition = 0;
+          let strarray = _.split(".");
+          let stringTail =
+            strarray[1] === undefined
+              ? ""
+              : `${strarray[1].split("").reverse().join("")}.`;
+          let stringHead = strarray[0].split("").reverse().join("");
+          let newString = "";
+          for (let i = 0; i < Math.floor(stringHead.length / 2) - 1; i++) {
+            if (indexPosition === 0) {
+              let obj = indexBasedFormat(indexPosition, stringHead, 3);
+              indexPosition = obj.indexPosition;
+              newString = obj.newString;
+            } else {
+              let obj = indexBasedFormat(indexPosition, newString, 2);
+              indexPosition = obj.indexPosition;
+              newString = obj.newString;
+            }
+          }
+
+          return `${stringTail}${newString}`;
+        }
+      };
+
+      function formatNumber(n) {
+        let str = n;
+        if (typeof n === "number") {
+          str = `${str}`;
+        }
+
+        if (+n < 0) {
+          return `${updateFormat(`${str.split("-")[1]}`)}-`;
+        } else {
+          return updateFormat(`${str}`);
+        }
+      }
+
+      console.time();
+      console.log(formatNumber(`0`));
+      console.timeEnd();
+
+      // 0.581787109375
+      // 0.386962890625
+
+      // 1.949, 42, 3;
+      // scatter.html:82 default: 0.26708984375 ms
+
+      // 1.324,94,9
+      // scatter.html:134 default: 0.243896484375 ms
+
+      // function numberDisplayFormat(n) {
+      //   //9844332- 984,43,32
+      //   //4000-000,4
+      //   //100-001
+      //   //100.123-  321.001
+      //   //4100 - 001,4
+      //   // 4100.243 -342.001,4
+
+      //   console.log(`financial number ${n}`);
+      //   let negative = false;
+      //   let str = n.toString();
+      //   if (str[0] == "-") {
+      //     str = str.substring(1, str.length);
+      //     negative = true;
+      //   }
+      //   let arr = [];
+      //   let i = str.indexOf(".");
+      //   if (i == -1) {
+      //     i = str.length - 1;
+      //   } else {
+      //     for (let j = str.length - 1; j > i; j--) {
+      //       arr.push(str[j]);
+      //     }
+      //     arr.push(str[i]);
+      //     i = i - 1;
+      //   }
+      //   for (let n = 0; i >= 0; i--, n++) {
+      //     if (n > 2 && n % 2 == 1) {
+      //       arr.push(",");
+      //     }
+      //     arr.push(str[i]);
+      //   }
+      //   if (negative) {
+      //     arr.push("-");
+      //   }
+
+      //   console.log(
+      //     `financial graph ${arr.reverse().join("")} financial number${n}`
+      //   );
+      //   return arr.reverse().join("");
+      // }
+
+      // console.time();
+      // console.log(numberDisplayFormat(`109001.100`));
+      // console.timeEnd();
+    </script>
+  </body>
+</html>
